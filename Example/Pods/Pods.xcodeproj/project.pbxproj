@@ -10,6 +10,8 @@
 		02555130D98BA84FAFF1ABAFCE76E302 /* MLLinkLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 710C622B3C127503447ABC088E530972 /* MLLinkLabel.m */; };
 		250C3FCD7616C63EA9941A0AFE7FC40F /* NSAttributedString+MLExpression.h in Headers */ = {isa = PBXBuildFile; fileRef = D384A37105AA51476ECA786AD1DA8B1C /* NSAttributedString+MLExpression.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2B6867F184563C6C54B12E0F4FB82282 /* NSString+MLLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 157FF5CE4BDBFC20AB4FEF624468C1EA /* NSString+MLLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		342D68BF1F2B0D3200D77DB5 /* MLLabel+Size.h in Headers */ = {isa = PBXBuildFile; fileRef = 342D68BD1F2B0D3200D77DB5 /* MLLabel+Size.h */; };
+		342D68C01F2B0D3200D77DB5 /* MLLabel+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D68BE1F2B0D3200D77DB5 /* MLLabel+Size.m */; };
 		37C5E0A79AAD60B5EC9376EEBC0A8BDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
 		3A15899065DDA8B2D6378941285E3FE6 /* NSAttributedString+MLLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 12C6A745F7B99ABE3E4DB3B9B437EF37 /* NSAttributedString+MLLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3FE9CCBB8CC88C38342FCA5974343862 /* NSAttributedString+MLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 142A60B9B737B92F0B0E128E87D67D8C /* NSAttributedString+MLLabel.m */; };
@@ -53,6 +55,8 @@
 		157FF5CE4BDBFC20AB4FEF624468C1EA /* NSString+MLLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSString+MLLabel.h"; sourceTree = "<group>"; };
 		272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
 		2B9C72FB6A9584F99F32B2D6C1ABE8BA /* MLLabel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MLLabel-dummy.m"; sourceTree = "<group>"; };
+		342D68BD1F2B0D3200D77DB5 /* MLLabel+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MLLabel+Size.h"; sourceTree = "<group>"; };
+		342D68BE1F2B0D3200D77DB5 /* MLLabel+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MLLabel+Size.m"; sourceTree = "<group>"; };
 		34963DF568A84804CD9E57D9B889BE3E /* MLTextAttachment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MLTextAttachment.h; sourceTree = "<group>"; };
 		37DB56D75062CC75FCB0966E1C6E8A8E /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
 		385E7411A0D8268C5E2C02505D80306E /* MLLabel+Override.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MLLabel+Override.h"; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 		634D914D411CBACB5F4AEB6DD11627CE /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				342D68BD1F2B0D3200D77DB5 /* MLLabel+Size.h */,
+				342D68BE1F2B0D3200D77DB5 /* MLLabel+Size.m */,
 				12C6A745F7B99ABE3E4DB3B9B437EF37 /* NSAttributedString+MLLabel.h */,
 				142A60B9B737B92F0B0E128E87D67D8C /* NSAttributedString+MLLabel.m */,
 				46A4761DC42E72283B2B782CAE9D0B51 /* NSMutableAttributedString+MLLabel.h */,
@@ -252,6 +258,7 @@
 				BB1DE15198561A661BD3A56305E49FF5 /* MLExpressionManager.h in Headers */,
 				80E4B503DDA7EA61FF0AF44E397003DA /* MLLabel+Override.h in Headers */,
 				7435FDE6ACE89CA33DE688495BFEF3CE /* MLLabel.h in Headers */,
+				342D68BF1F2B0D3200D77DB5 /* MLLabel+Size.h in Headers */,
 				A2A5CC49A96AA2B6E2A1CD776E756513 /* MLLabelLayoutManager.h in Headers */,
 				B0B4556C18E06729673AC1C4F8072F9A /* MLLinkLabel.h in Headers */,
 				CB843D05D1F5C138B79F2D23808D7389 /* MLTextAttachment.h in Headers */,
@@ -336,6 +343,7 @@
 				F4635A59E40B4A8C4F080111D01F4CBA /* MLLabel-dummy.m in Sources */,
 				4228091F0EAE614B4D896793B1BB9D99 /* MLLabel.m in Sources */,
 				59CD21DF20E278A35FA7FB47F6875450 /* MLLabelLayoutManager.m in Sources */,
+				342D68C01F2B0D3200D77DB5 /* MLLabel+Size.m in Sources */,
 				02555130D98BA84FAFF1ABAFCE76E302 /* MLLinkLabel.m in Sources */,
 				5C4EB044DA4E19CD8333F0BB5E80AB7D /* MLTextAttachment.m in Sources */,
 				FA10E275B8BB87B1633C6B70CA86AB9D /* NSAttributedString+MLExpression.m in Sources */,

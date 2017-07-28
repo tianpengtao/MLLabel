@@ -13,8 +13,10 @@
 @property (readonly, nonatomic, copy) NSString *regex;
 @property (readonly, nonatomic, copy) NSString *plistName;
 @property (readonly, nonatomic, copy) NSString *bundleName;
+@property (nonatomic, strong) NSBundle *mainBundle;
 
 + (instancetype)expressionWithRegex:(NSString*)regex plistName:(NSString*)plistName bundleName:(NSString*)bundleName;
++ (instancetype)expressionWithRegex:(NSString*)regex plistName:(NSString*)plistName bundleName:(NSString*)bundleName mainBundle:(NSBundle*)mainBundle;
 
 @end
 

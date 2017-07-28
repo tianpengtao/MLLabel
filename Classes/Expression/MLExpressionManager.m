@@ -65,7 +65,7 @@
 }
 
 #pragma mark - common
-- (NSDictionary*)expressionMapWithPlistName:(NSString*)plistName
+- (NSDictionary*)expressionMapWithPlistName:(NSString*)plistName bundle:(NSBundle*)bundle
 {
     NSAssert(plistName&&plistName.length>0, @"expressionMapWithRegex:参数不得为空");
     
@@ -73,7 +73,7 @@
         return self.expressionMapRecords[plistName];
     }
     
-    NSString *plistPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:plistName];
+    NSString *plistPath = [[bundle resourcePath] stringByAppendingPathComponent:plistName];
     NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     NSAssert(dict,@"表情字典%@找不到,请注意大小写",plistName);
     self.expressionMapRecords[plistName] = dict;
@@ -192,7 +192,10 @@
             //加个表情到结果中
             UIImage *image = nil;
             if ([UIImage respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)]) {
-                NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle mainBundle] URLForResource:expression.bundleName withExtension:nil]];
+                
+                
+                NSBundle *bundle=[NSBundle bundleWithURL:[expression.mainBundle URLForResource:expression.bundleName withExtension:nil]];
+                
                 image = [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil];
             }else{
                 NSString *imagePath = [expression.bundleName stringByAppendingPathComponent:imageName];
@@ -202,15 +205,7 @@
             MLTextAttachment *textAttachment = [MLTextAttachment textAttachmentWithLineHeightMultiple:kExpressionLineHeightMultiple imageBlock:^UIImage *(CGRect imageBounds, NSTextContainer *textContainer, NSUInteger charIndex, MLTextAttachment *textAttachment) {
                 return image;
             } imageAspectRatio:image.size.width/image.size.height];
-            
-            NSMutableAttributedString *attachmentAttributedString = [[NSAttributedString attributedStringWithAttachment:textAttachment]mutableCopy];
-            [expressionAttrStr enumerateAttributesInRange:NSMakeRange(0, expressionAttrStr.length) options:0 usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
-                if (attrs.count>0&&range.length==expressionAttrStr.length) {
-                    [attachmentAttributedString addAttributes:attrs range:NSMakeRange(0, attachmentAttributedString.length)];
-                }
-            }];
-            
-            [resultAttributedString appendAttributedString:attachmentAttributedString];
+            [resultAttributedString appendAttributedString:[NSAttributedString attributedStringWithAttachment:textAttachment]];
         }else{
             //找不到对应图像名称就直接加上去
             [resultAttributedString appendAttributedString:expressionAttrStr];
@@ -237,10 +232,19 @@
 {
     return self.expressionRegularExpression&&self.expressionMap&&self.bundleName.length>0;
 }
-
 + (instancetype)expressionWithRegex:(NSString*)regex plistName:(NSString*)plistName bundleName:(NSString*)bundleName
 {
     MLExpression *expression = [MLExpression new];
+    expression.regex = regex;
+    expression.plistName = plistName;
+    expression.bundleName = bundleName;
+    NSAssert([expression isValid], @"此expression无效，请检查参数");
+    return expression;
+}
++ (instancetype)expressionWithRegex:(NSString*)regex plistName:(NSString*)plistName bundleName:(NSString*)bundleName mainBundle:(NSBundle*)mainBundle
+{
+    MLExpression *expression = [MLExpression new];
+    expression.mainBundle = mainBundle;
     expression.regex = regex;
     expression.plistName = plistName;
     expression.bundleName = bundleName;
@@ -267,7 +271,7 @@
         _plistName = [_plistName stringByAppendingString:@".plist"];
     }
     
-    self.expressionMap = [[MLExpressionManager sharedInstance]expressionMapWithPlistName:_plistName];
+    self.expressionMap = [[MLExpressionManager sharedInstance]expressionMapWithPlistName:_plistName bundle:_mainBundle];
 }
 
 - (void)setBundleName:(NSString *)bundleName
